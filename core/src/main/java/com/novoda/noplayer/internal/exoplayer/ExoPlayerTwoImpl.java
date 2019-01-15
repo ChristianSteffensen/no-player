@@ -21,6 +21,7 @@ import com.novoda.noplayer.model.LoadTimeout;
 import com.novoda.noplayer.model.PlayerAudioTrack;
 import com.novoda.noplayer.model.PlayerSubtitleTrack;
 import com.novoda.noplayer.model.PlayerVideoTrack;
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.Timeout;
 
 import java.util.List;
@@ -35,6 +36,7 @@ class ExoPlayerTwoImpl implements NoPlayer {
     private final Heart heart;
     private final DrmSessionCreator drmSessionCreator;
     private final MediaCodecSelector mediaCodecSelector;
+    private ResizeMode resizeMode;
     private final LoadTimeout loadTimeout;
 
     @Nullable
@@ -50,7 +52,8 @@ class ExoPlayerTwoImpl implements NoPlayer {
                      LoadTimeout loadTimeoutParam,
                      Heart heart,
                      DrmSessionCreator drmSessionCreator,
-                     MediaCodecSelector mediaCodecSelector) {
+                     MediaCodecSelector mediaCodecSelector,
+                     ResizeMode resizeMode) {
         this.exoPlayer = exoPlayer;
         this.listenersHolder = listenersHolder;
         this.loadTimeout = loadTimeoutParam;
@@ -58,6 +61,7 @@ class ExoPlayerTwoImpl implements NoPlayer {
         this.heart = heart;
         this.drmSessionCreator = drmSessionCreator;
         this.mediaCodecSelector = mediaCodecSelector;
+        this.resizeMode = resizeMode;
     }
 
     void initialise() {
@@ -231,6 +235,7 @@ class ExoPlayerTwoImpl implements NoPlayer {
         this.playerView = playerView;
         listenersHolder.addStateChangedListener(playerView.getStateChangedListener());
         listenersHolder.addVideoSizeChangedListener(playerView.getVideoSizeChangedListener());
+        playerView.setResizeMode(resizeMode);
     }
 
     @Override

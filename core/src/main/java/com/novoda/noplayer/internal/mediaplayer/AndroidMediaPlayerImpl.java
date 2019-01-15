@@ -23,6 +23,7 @@ import com.novoda.noplayer.model.LoadTimeout;
 import com.novoda.noplayer.model.PlayerAudioTrack;
 import com.novoda.noplayer.model.PlayerSubtitleTrack;
 import com.novoda.noplayer.model.PlayerVideoTrack;
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.Timeout;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ class AndroidMediaPlayerImpl implements NoPlayer {
     private final PlayerListenersHolder listenersHolder;
     private final LoadTimeout loadTimeout;
     private final BuggyVideoDriverPreventer buggyVideoDriverPreventer;
+    private ResizeMode resizeMode;
 
     private int videoWidth;
     private int videoHeight;
@@ -65,7 +67,8 @@ class AndroidMediaPlayerImpl implements NoPlayer {
                            LoadTimeout loadTimeout,
                            Heart heart,
                            DelayedActionExecutor delayedActionExecutor,
-                           BuggyVideoDriverPreventer buggyVideoDriverPreventer) {
+                           BuggyVideoDriverPreventer buggyVideoDriverPreventer,
+                           ResizeMode resizeMode) {
         this.mediaPlayerInformation = mediaPlayerInformation;
         this.mediaPlayer = mediaPlayer;
         this.forwarder = forwarder;
@@ -75,6 +78,7 @@ class AndroidMediaPlayerImpl implements NoPlayer {
         this.heart = heart;
         this.delayedActionExecutor = delayedActionExecutor;
         this.buggyVideoDriverPreventer = buggyVideoDriverPreventer;
+        this.resizeMode = resizeMode;
     }
 
     void initialise() {
@@ -297,6 +301,8 @@ class AndroidMediaPlayerImpl implements NoPlayer {
         listenersHolder.addStateChangedListener(playerView.getStateChangedListener());
         PlayerSurfaceHolder playerSurfaceHolder = playerView.getPlayerSurfaceHolder();
         surfaceRequester = playerSurfaceHolder.getSurfaceRequester();
+
+        playerView.setResizeMode(resizeMode);
     }
 
     @Override

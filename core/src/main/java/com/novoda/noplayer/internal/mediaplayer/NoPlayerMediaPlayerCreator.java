@@ -10,6 +10,7 @@ import com.novoda.noplayer.internal.SystemClock;
 import com.novoda.noplayer.internal.listeners.PlayerListenersHolder;
 import com.novoda.noplayer.internal.mediaplayer.forwarder.MediaPlayerForwarder;
 import com.novoda.noplayer.model.LoadTimeout;
+import com.novoda.noplayer.model.ResizeMode;
 
 import java.util.HashMap;
 
@@ -26,8 +27,8 @@ public class NoPlayerMediaPlayerCreator {
         this.internalCreator = internalCreator;
     }
 
-    public NoPlayer createMediaPlayer(Context context) {
-        AndroidMediaPlayerImpl player = internalCreator.create(context);
+    public NoPlayer createMediaPlayer(Context context, ResizeMode resizeMode) {
+        AndroidMediaPlayerImpl player = internalCreator.create(context, resizeMode);
         player.initialise();
         return player;
     }
@@ -40,7 +41,7 @@ public class NoPlayerMediaPlayerCreator {
             this.handler = handler;
         }
 
-        public AndroidMediaPlayerImpl create(Context context) {
+        public AndroidMediaPlayerImpl create(Context context, ResizeMode resizeMode) {
             LoadTimeout loadTimeout = new LoadTimeout(new SystemClock(), handler);
             MediaPlayerForwarder forwarder = new MediaPlayerForwarder();
             AndroidMediaPlayerFacade facade = AndroidMediaPlayerFacade.newInstance(context, forwarder);
@@ -60,7 +61,8 @@ public class NoPlayerMediaPlayerCreator {
                     loadTimeout,
                     heart,
                     delayedActionExecutor,
-                    preventer
+                    preventer,
+                    resizeMode
             );
         }
     }

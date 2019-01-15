@@ -14,6 +14,7 @@ import com.novoda.noplayer.OptionsBuilder;
 import com.novoda.noplayer.PlayerBuilder;
 import com.novoda.noplayer.PlayerView;
 import com.novoda.noplayer.internal.utils.NoPlayerLog;
+import com.novoda.noplayer.model.ResizeMode;
 
 public class MainActivity extends Activity {
 
@@ -46,6 +47,7 @@ public class MainActivity extends Activity {
         player = new PlayerBuilder()
                 .withWidevineModularStreamingDrm(drmHandler)
                 .withDowngradedSecureDecoder()
+                .withResizeMode(ResizeMode.FIT)
                 .build(this);
 
         demoPresenter = new DemoPresenter(controllerView, player, player.getListeners(), playerView);

@@ -5,8 +5,16 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
+
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.TextCues;
+
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT;
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH;
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 
 public class NoPlayerView extends FrameLayout implements AspectRatioChangeCalculator.Listener, PlayerView {
 
@@ -76,6 +84,34 @@ public class NoPlayerView extends FrameLayout implements AspectRatioChangeCalcul
     @Override
     public void setSubtitleCue(TextCues textCues) {
         subtitleView.setCues(textCues);
+    }
+
+    @Override
+    public void setResizeMode(ResizeMode resizeMode) {
+        int mode;
+
+        switch (resizeMode) {
+            case FIT:
+                mode = RESIZE_MODE_FIT;
+                break;
+            case FIXED_WIDTH:
+                mode = RESIZE_MODE_FIXED_WIDTH;
+                break;
+            case FIXED_HEIGHT:
+                mode = RESIZE_MODE_FIXED_HEIGHT;
+                break;
+            case FILL:
+                mode = RESIZE_MODE_FILL;
+                break;
+            case ZOOM:
+                mode = RESIZE_MODE_ZOOM;
+                break;
+            default:
+                mode = RESIZE_MODE_FIT;
+                break;
+        }
+
+        videoFrame.setResizeMode(mode);
     }
 
     private final NoPlayer.VideoSizeChangedListener videoSizeChangedListener = new NoPlayer.VideoSizeChangedListener() {

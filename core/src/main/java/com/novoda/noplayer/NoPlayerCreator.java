@@ -9,6 +9,7 @@ import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreator;
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreatorException;
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreatorFactory;
 import com.novoda.noplayer.internal.mediaplayer.NoPlayerMediaPlayerCreator;
+import com.novoda.noplayer.model.ResizeMode;
 
 import java.util.List;
 
@@ -32,23 +33,23 @@ class NoPlayerCreator {
         this.drmSessionCreatorFactory = drmSessionCreatorFactory;
     }
 
-    NoPlayer create(DrmType drmType, DrmHandler drmHandler, boolean downgradeSecureDecoder) {
+    NoPlayer create(DrmType drmType, DrmHandler drmHandler, boolean downgradeSecureDecoder, ResizeMode resizeMode) {
         for (PlayerType player : prioritizedPlayerTypes) {
             if (player.supports(drmType)) {
-                return createPlayerForType(player, drmType, drmHandler, downgradeSecureDecoder);
+                return createPlayerForType(player, drmType, drmHandler, downgradeSecureDecoder, resizeMode);
             }
         }
         throw UnableToCreatePlayerException.unhandledDrmType(drmType);
     }
 
-    private NoPlayer createPlayerForType(PlayerType playerType, DrmType drmType, DrmHandler drmHandler, boolean downgradeSecureDecoder) {
+    private NoPlayer createPlayerForType(PlayerType playerType, DrmType drmType, DrmHandler drmHandler, boolean downgradeSecureDecoder, ResizeMode resizeMode) {
         switch (playerType) {
             case MEDIA_PLAYER:
-                return noPlayerMediaPlayerCreator.createMediaPlayer(context);
+                return noPlayerMediaPlayerCreator.createMediaPlayer(context, resizeMode);
             case EXO_PLAYER:
                 try {
                     DrmSessionCreator drmSessionCreator = drmSessionCreatorFactory.createFor(drmType, drmHandler);
-                    return noPlayerExoPlayerCreator.createExoPlayer(context, drmSessionCreator, downgradeSecureDecoder);
+                    return noPlayerExoPlayerCreator.createExoPlayer(context, drmSessionCreator, downgradeSecureDecoder, resizeMode);
                 } catch (DrmSessionCreatorException exception) {
                     throw new UnableToCreatePlayerException(exception);
                 }

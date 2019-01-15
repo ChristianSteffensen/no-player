@@ -13,6 +13,7 @@ import com.novoda.noplayer.internal.exoplayer.NoPlayerExoPlayerCreator;
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreatorFactory;
 import com.novoda.noplayer.internal.mediaplayer.NoPlayerMediaPlayerCreator;
 import com.novoda.noplayer.internal.utils.AndroidDeviceVersion;
+import com.novoda.noplayer.model.ResizeMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ public class PlayerBuilder {
     private DrmHandler drmHandler = DrmHandler.NO_DRM;
     private List<PlayerType> prioritizedPlayerTypes = Arrays.asList(PlayerType.EXO_PLAYER, PlayerType.MEDIA_PLAYER);
     private boolean downgradeSecureDecoder;
+    private ResizeMode resizeMode = ResizeMode.FIT;
 
     /**
      * Sets {@link PlayerBuilder} to build a {@link NoPlayer} which supports Widevine classic DRM.
@@ -103,6 +105,16 @@ public class PlayerBuilder {
     }
 
     /**
+     * Sets a resize mode
+     *
+     * @return {@link PlayerBuilder}
+     */
+    public PlayerBuilder withResizeMode(ResizeMode mode) {
+        resizeMode = mode;
+        return this;
+    }
+
+    /**
      * Builds a new {@link NoPlayer} instance.
      *
      * @param context The {@link Context} associated with the player.
@@ -126,7 +138,7 @@ public class PlayerBuilder {
                 NoPlayerMediaPlayerCreator.newInstance(handler),
                 drmSessionCreatorFactory
         );
-        return noPlayerCreator.create(drmType, drmHandler, downgradeSecureDecoder);
+        return noPlayerCreator.create(drmType, drmHandler, downgradeSecureDecoder, resizeMode);
     }
 
 }

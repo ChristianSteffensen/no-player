@@ -15,6 +15,7 @@ import com.novoda.noplayer.internal.listeners.PlayerListenersHolder;
 import com.novoda.noplayer.internal.utils.AndroidDeviceVersion;
 import com.novoda.noplayer.internal.utils.Optional;
 import com.novoda.noplayer.model.LoadTimeout;
+import com.novoda.noplayer.model.ResizeMode;
 
 public class NoPlayerExoPlayerCreator {
 
@@ -34,8 +35,8 @@ public class NoPlayerExoPlayerCreator {
         this.internalCreator = internalCreator;
     }
 
-    public NoPlayer createExoPlayer(Context context, DrmSessionCreator drmSessionCreator, boolean downgradeSecureDecoder) {
-        ExoPlayerTwoImpl player = internalCreator.create(context, drmSessionCreator, downgradeSecureDecoder);
+    public NoPlayer createExoPlayer(Context context, DrmSessionCreator drmSessionCreator, boolean downgradeSecureDecoder, ResizeMode resizeMode) {
+        ExoPlayerTwoImpl player = internalCreator.create(context, drmSessionCreator, downgradeSecureDecoder, resizeMode);
         player.initialise();
         return player;
     }
@@ -50,7 +51,7 @@ public class NoPlayerExoPlayerCreator {
             this.dataSourceFactory = dataSourceFactory;
         }
 
-        ExoPlayerTwoImpl create(Context context, DrmSessionCreator drmSessionCreator, boolean downgradeSecureDecoder) {
+        ExoPlayerTwoImpl create(Context context, DrmSessionCreator drmSessionCreator, boolean downgradeSecureDecoder, ResizeMode resizeMode) {
             MediaSourceFactory mediaSourceFactory = new MediaSourceFactory(context, handler, dataSourceFactory);
 
             MediaCodecSelector mediaCodecSelector = downgradeSecureDecoder
@@ -84,7 +85,8 @@ public class NoPlayerExoPlayerCreator {
                     loadTimeout,
                     heart,
                     drmSessionCreator,
-                    mediaCodecSelector
+                    mediaCodecSelector,
+                    resizeMode
             );
         }
     }

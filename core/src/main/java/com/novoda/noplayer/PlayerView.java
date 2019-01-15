@@ -1,6 +1,8 @@
 package com.novoda.noplayer;
 
 import android.view.View;
+
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.TextCues;
 
 public interface PlayerView {
@@ -19,4 +21,5 @@ public interface PlayerView {
 
     void setSubtitleCue(TextCues textCues);
 
+    void setResizeMode(ResizeMode resizeMode);
 }

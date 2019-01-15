@@ -11,9 +11,7 @@ import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreator;
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreatorException;
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreatorFactory;
 import com.novoda.noplayer.internal.mediaplayer.NoPlayerMediaPlayerCreator;
-
-import java.util.Arrays;
-import java.util.List;
+import com.novoda.noplayer.model.ResizeMode;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,6 +21,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,8 +61,8 @@ public class NoPlayerCreatorTest {
         @Before
         public void setUp() throws DrmSessionCreatorException {
             given(drmSessionCreatorFactory.createFor(any(DrmType.class), any(DrmHandler.class))).willReturn(drmSessionCreator);
-            given(noPlayerExoPlayerCreator.createExoPlayer(context, drmSessionCreator, USE_SECURE_CODEC)).willReturn(EXO_PLAYER);
-            given(noPlayerMediaPlayerCreator.createMediaPlayer(context)).willReturn(MEDIA_PLAYER);
+            given(noPlayerExoPlayerCreator.createExoPlayer(context, drmSessionCreator, USE_SECURE_CODEC, ResizeMode.FIT)).willReturn(EXO_PLAYER);
+            given(noPlayerMediaPlayerCreator.createMediaPlayer(context, ResizeMode.FIT)).willReturn(MEDIA_PLAYER);
             noPlayerCreator = new NoPlayerCreator(context, prioritizedPlayerTypes(), noPlayerExoPlayerCreator, noPlayerMediaPlayerCreator, drmSessionCreatorFactory);
         }
 
@@ -77,28 +78,28 @@ public class NoPlayerCreatorTest {
 
         @Test
         public void whenCreatingPlayerWithDrmTypeNone_thenReturnsMediaPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.NONE, DrmHandler.NO_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.NONE, DrmHandler.NO_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(MEDIA_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineClassic_thenReturnsMediaPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_CLASSIC, DrmHandler.NO_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_CLASSIC, DrmHandler.NO_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(MEDIA_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineModularStream_thenReturnsExoPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_STREAM, STREAMING_MODULAR_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_STREAM, STREAMING_MODULAR_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(EXO_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineModularDownload_thenReturnsExoPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_DOWNLOAD, DOWNLOADED_MODULAR_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_DOWNLOAD, DOWNLOADED_MODULAR_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(EXO_PLAYER);
         }
@@ -113,28 +114,28 @@ public class NoPlayerCreatorTest {
 
         @Test
         public void whenCreatingPlayerWithDrmTypeNone_thenReturnsExoPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.NONE, DrmHandler.NO_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.NONE, DrmHandler.NO_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(EXO_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineClassic_thenReturnsMediaPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_CLASSIC, DrmHandler.NO_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_CLASSIC, DrmHandler.NO_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(MEDIA_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineModularStream_thenReturnsExoPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_STREAM, STREAMING_MODULAR_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_STREAM, STREAMING_MODULAR_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(EXO_PLAYER);
         }
 
         @Test
         public void whenCreatingPlayerWithDrmTypeWidevineModularDownload_thenReturnsExoPlayer() {
-            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_DOWNLOAD, DOWNLOADED_MODULAR_DRM, USE_SECURE_CODEC);
+            NoPlayer player = noPlayerCreator.create(DrmType.WIDEVINE_MODULAR_DOWNLOAD, DOWNLOADED_MODULAR_DRM, USE_SECURE_CODEC, ResizeMode.FIT);
 
             assertThat(player).isEqualTo(EXO_PLAYER);
         }

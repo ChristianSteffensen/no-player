@@ -2,6 +2,8 @@ package com.novoda.noplayer.internal.mediaplayer;
 
 import android.content.Context;
 
+import com.novoda.noplayer.model.ResizeMode;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,12 +31,12 @@ public class NoPlayerMediaPlayerCreatorTest {
     @Before
     public void setUp() {
         creator = new NoPlayerMediaPlayerCreator(internalCreator);
-        given(internalCreator.create(context)).willReturn(player);
+        given(internalCreator.create(context, ResizeMode.FIT)).willReturn(player);
     }
 
     @Test
     public void whenCreatingMediaPlayer_thenInitialisesPlayer() {
-        creator.createMediaPlayer(context);
+        creator.createMediaPlayer(context, ResizeMode.FIT);
 
         verify(player).initialise();
     }

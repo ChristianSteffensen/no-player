@@ -3,6 +3,7 @@ package com.novoda.noplayer.internal.exoplayer;
 import android.content.Context;
 
 import com.novoda.noplayer.internal.exoplayer.drm.DrmSessionCreator;
+import com.novoda.noplayer.model.ResizeMode;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,13 +35,13 @@ public class NoPlayerExoPlayerCreatorTest {
 
     @Before
     public void setUp() {
-        given(internalCreator.create(context, drmSessionCreator, USE_SECURE_CODEC)).willReturn(player);
+        given(internalCreator.create(context, drmSessionCreator, USE_SECURE_CODEC, ResizeMode.FIT)).willReturn(player);
         creator = new NoPlayerExoPlayerCreator(internalCreator);
     }
 
     @Test
     public void whenCreatingExoPlayerTwo_thenInitialisesPlayer() {
-        creator.createExoPlayer(context, drmSessionCreator, USE_SECURE_CODEC);
+        creator.createExoPlayer(context, drmSessionCreator, USE_SECURE_CODEC, ResizeMode.FIT);
 
         verify(player).initialise();
     }

@@ -20,6 +20,7 @@ import com.novoda.noplayer.internal.exoplayer.forwarder.ExoPlayerForwarder;
 import com.novoda.noplayer.internal.listeners.PlayerListenersHolder;
 import com.novoda.noplayer.model.LoadTimeout;
 import com.novoda.noplayer.model.PlayerSubtitleTrack;
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.TextCues;
 import com.novoda.noplayer.model.Timeout;
 import org.junit.Before;
@@ -639,7 +640,8 @@ public class ExoPlayerTwoImplTest {
                     loadTimeout,
                     heart,
                     drmSessionCreator,
-                    mediaCodecSelector
+                    mediaCodecSelector,
+                    ResizeMode.FIT
             );
         }
     }

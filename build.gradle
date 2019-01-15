@@ -2,10 +2,10 @@ allprojects {
     version = '4.5.1'
 }
 
-def teamPropsFile(propsFile) {
-    def teamPropsDir = rootProject.file('team-props')
-    return new File(teamPropsDir, propsFile)
-}
+//def teamPropsFile(propsFile) {
+//    def teamPropsDir = rootProject.file('team-props')
+//    return new File(teamPropsDir, propsFile)
+//}
 
 buildscript {
     repositories {
@@ -16,7 +16,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'com.novoda:bintray-release:0.8.1'
-        classpath 'com.novoda:gradle-static-analysis-plugin:0.5.2'
+//        classpath 'com.novoda:gradle-static-analysis-plugin:0.5.2'
         classpath 'com.novoda:gradle-build-properties-plugin:0.4.1'
     }
 }
@@ -27,5 +27,5 @@ subprojects {
         jcenter()
     }
 
-    apply from: teamPropsFile('static-analysis.gradle')
+//    apply from: teamPropsFile('static-analysis.gradle')
 }

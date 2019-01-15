@@ -22,6 +22,7 @@ import com.novoda.noplayer.model.Either;
 import com.novoda.noplayer.model.LoadTimeout;
 import com.novoda.noplayer.model.PlayerAudioTrack;
 import com.novoda.noplayer.model.PlayerAudioTrackFixture;
+import com.novoda.noplayer.model.ResizeMode;
 import com.novoda.noplayer.model.Timeout;
 import org.junit.Before;
 import org.junit.Rule;
@@ -751,7 +752,8 @@ public class AndroidMediaPlayerImplTest {
                     loadTimeout,
                     heart,
                     delayedActionExecutor,
-                    buggyVideoDriverPreventer
+                    buggyVideoDriverPreventer,
+                    ResizeMode.FIT
             );
         }
     }

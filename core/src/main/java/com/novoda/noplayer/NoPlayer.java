@@ -111,6 +111,12 @@ public interface NoPlayer extends PlayerState {
     void detach(PlayerView playerView);
 
     /**
+     * Returns if there is a {@link PlayerView} attached to the Player.
+     * @return if a {@link PlayerView} is attached
+     */
+    boolean isAttached();
+
+    /**
      * Retrieves all of the available {@link PlayerVideoTrack} of a prepared Player.
      *
      * @return a list of available {@link PlayerVideoTrack} of a prepared Player.

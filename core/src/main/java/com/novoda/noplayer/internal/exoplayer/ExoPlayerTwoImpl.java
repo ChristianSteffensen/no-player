@@ -247,6 +247,11 @@ class ExoPlayerTwoImpl implements NoPlayer {
     }
 
     @Override
+    public boolean isAttached() {
+        return playerView != null;
+    }
+
+    @Override
     public boolean selectAudioTrack(PlayerAudioTrack audioTrack) throws IllegalStateException {
         return exoPlayer.selectAudioTrack(audioTrack);
     }

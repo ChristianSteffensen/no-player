@@ -315,6 +315,11 @@ class AndroidMediaPlayerImpl implements NoPlayer {
         containerView = null;
     }
 
+    @Override
+    public boolean isAttached() {
+        return containerView != null;
+    }
+
     private void clearSurfaceHolderCallbacks() {
         for (SurfaceRequester.Callback callback : surfaceHolderRequesterCallbacks) {
             surfaceRequester.removeCallback(callback);

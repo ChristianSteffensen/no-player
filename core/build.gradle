@@ -44,7 +44,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.ChristianSteffensen'
                 artifactId = 'no-player'
-                version = '5.0.0'
+                version = '5.0.1'
                 from components.findByName('release')
             }
         }

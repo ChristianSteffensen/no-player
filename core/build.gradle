@@ -6,7 +6,7 @@ group = 'com.github.ChristianSteffensen'
 
 android {
     compileSdk 34
-    namespace "com.github.ChristianSteffensen"
+    namespace "com.novoda.noplayer"
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'

@@ -1,47 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'bintray-release'
-apply plugin: 'jacoco'
-apply plugin: 'com.novoda.build-properties'
+apply plugin: 'maven-publish'
 
-buildProperties {
-    cli {
-        using(project)
-    }
-    bintray {
-        def bintrayCredentials = {
-            boolean isDryRun = cli['dryRun'].or(true).boolean
-            return isDryRun ?
-                    ['bintrayRepo': 'n/a', 'bintrayUser': 'n/a', 'bintrayKey': 'n/a'] :
-                    new File("${System.getenv('BINTRAY_PROPERTIES')}")
-        }
-        using(bintrayCredentials()).or(cli)
-        description = '''This should contain the following properties:
-                       | - bintrayRepo: name of the repo of the organisation to deploy the artifacts to
-                       | - bintrayUser: name of the account used to deploy the artifacts
-                       | - bintrayKey: API key of the account used to deploy the artifacts
-        '''.stripMargin()
-    }
-    publish {
-        def generateVersion = {
-            boolean isSnapshot = cli['bintraySnapshot'].or(false).boolean
-            if (isSnapshot) {
-                return "SNAPSHOT-${System.getenv('BUILD_NUMBER') ?: 'LOCAL'}";
-            }
-            boolean isExperimental = cli['bintrayExperimental'].or(false).boolean
-            if (isExperimental) {
-                return "EXPERIMENTAL-${System.getenv('BUILD_NUMBER') ?: 'LOCAL'}";
-            }
-            return version
-        }
-        using(['version': "${generateVersion()}"])
-                .or(buildProperties.bintray)
-    }
-}
+group = 'com.github.ChristianSteffensen'
+
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
-
+    compileSdk 34
+    namespace "com.github.ChristianSteffensen"
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
@@ -64,18 +29,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.4'
     testImplementation 'org.easytesting:fest-assert-core:2.0M10'
-}
-
-publish {
-    userOrg = 'novoda'
-    repoName = buildProperties.publish['bintrayRepo'].string
-    groupId = 'com.novoda'
-    artifactId = 'no-player'
-    version = buildProperties.publish['version'].string
-    bintrayUser = buildProperties.publish['bintrayUser'].string
-    bintrayKey = buildProperties.publish['bintrayKey'].string
-    publishVersion = version
-    uploadName = 'no-player'
-    desc = 'player to wrap players'
-    website = 'https://github.com/novoda/no-player'
 }

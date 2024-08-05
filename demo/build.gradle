@@ -1,16 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '27.0.3'
+    compileSdk 34
 
     defaultConfig {
         applicationId 'com.novoda.demo'
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 34
         versionCode 1
         versionName '1.0'
     }
+
+    namespace "com.github.ChristianSteffensen"
 
     lintOptions {
 //        lintConfig teamPropsFile('static-analysis/lint-config.xml')

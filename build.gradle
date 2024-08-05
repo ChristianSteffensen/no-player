@@ -11,6 +11,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
@@ -20,12 +21,15 @@ buildscript {
 
 repositories {
     google()
+    maven { url 'https://jitpack.io' }
 }
 
 subprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+
     }
 
 //    apply from: teamPropsFile('static-analysis.gradle')

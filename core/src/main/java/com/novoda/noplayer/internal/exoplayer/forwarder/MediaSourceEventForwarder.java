@@ -1,6 +1,5 @@
 package com.novoda.noplayer.internal.exoplayer.forwarder;
 
-import android.support.annotation.Nullable;
 
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceEventListener;
@@ -11,6 +10,8 @@ import java.util.HashMap;
 
 import static com.novoda.noplayer.internal.exoplayer.forwarder.ForwarderInformation.Methods;
 import static com.novoda.noplayer.internal.exoplayer.forwarder.ForwarderInformation.Parameters;
+
+import androidx.annotation.Nullable;
 
 // This implements an interface method defined by ExoPlayer
 @SuppressWarnings({"PMD.UnusedImports", "checkstyle:ParameterNumber", "PMD.ExcessiveParameterList"})

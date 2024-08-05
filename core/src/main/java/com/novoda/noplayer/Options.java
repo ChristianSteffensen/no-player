@@ -1,5 +1,7 @@
 package com.novoda.noplayer;
 
+import androidx.annotation.NonNull;
+
 public class Options {
 
     private final ContentType contentType;
@@ -52,6 +54,7 @@ public class Options {
         return result;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Options{"

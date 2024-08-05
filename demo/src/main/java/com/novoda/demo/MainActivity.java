@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.ChristianSteffensen.R;
 import com.novoda.noplayer.ContentType;
 import com.novoda.noplayer.NoPlayer;
 import com.novoda.noplayer.Options;

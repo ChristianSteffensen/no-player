@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.github.ChristianSteffensen.R;
+
 public class AndroidControllerView extends LinearLayout implements ControllerView {
 
     private ImageView playPauseButton;

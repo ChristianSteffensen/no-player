@@ -4,7 +4,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import com.novoda.noplayer.internal.mediaplayer.PlaybackStateChecker.PlaybackState;
@@ -25,6 +24,8 @@ import java.util.Map;
 import static com.novoda.noplayer.internal.mediaplayer.PlaybackStateChecker.PlaybackState.IDLE;
 import static com.novoda.noplayer.internal.mediaplayer.PlaybackStateChecker.PlaybackState.PAUSED;
 import static com.novoda.noplayer.internal.mediaplayer.PlaybackStateChecker.PlaybackState.PLAYING;
+
+import androidx.annotation.Nullable;
 
 class AndroidMediaPlayerFacade {
 

@@ -10,7 +10,7 @@ allprojects {
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -18,9 +18,14 @@ buildscript {
     }
 }
 
+repositories {
+    google()
+}
+
 subprojects {
     repositories {
         google()
+        mavenCentral()
     }
 
 //    apply from: teamPropsFile('static-analysis.gradle')

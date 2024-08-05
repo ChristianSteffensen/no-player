@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 30
+    compileSdk 34
 
     defaultConfig {
         applicationId 'com.novoda.demo'
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdk 28
+        targetSdk 34
         versionCode 1
         versionName '1.0'
     }

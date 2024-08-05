@@ -12,7 +12,8 @@
 
     <activity
       android:name="com.novoda.demo.MainActivity"
-      android:theme="@style/Theme.NoPlayer">
+        android:exported="true"
+        android:theme="@style/Theme.NoPlayer">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

@@ -5,10 +5,10 @@ group = 'com.github.ChristianSteffensen'
 
 
 android {
-    compileSdk 30
+    compileSdk 34
     namespace "com.novoda.noplayer"
     defaultConfig {
-        minSdkVersion 16
+        minSdk 28
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 

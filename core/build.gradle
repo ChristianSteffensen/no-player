@@ -41,13 +41,8 @@ java {
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
-            maven(MavenPublication) {
-                group = 'com.github.ChristianSteffensen'
-                artifactId = 'library'
-                version = '5.0.0'
-
-                from components.findByName('release')
+            release(MavenPublication) {
+                from components.release
             }
         }
     }
